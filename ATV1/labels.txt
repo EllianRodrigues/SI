@@ -1,0 +1,4 @@
+0 fundo
+1 lego
+2 espada
+3 celular
