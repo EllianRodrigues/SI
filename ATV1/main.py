@@ -16,7 +16,6 @@ while True:
     ret, image = camera.read()
 
     image = cv2.resize(image, (854, 480), interpolation=cv2.INTER_AREA)
-    
 
     model_image = cv2.resize(image, (224, 224), interpolation=cv2.INTER_AREA)
     model_image = np.asarray(model_image, dtype=np.float32).reshape(1, 224, 224, 3)
