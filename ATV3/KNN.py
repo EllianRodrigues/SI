@@ -48,6 +48,5 @@ plt.title("Análise por Objetos")
 plt.xlabel("Objetos")
 plt.ylabel("Média Normalizada")
 plt.legend()
-
 plt.tight_layout()
 plt.show()
