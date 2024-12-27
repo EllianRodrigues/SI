@@ -77,47 +77,47 @@ print(f'Relatório de Classificação:\n{report}')
 
 
 #######################################################################
-# Abrir o novo CSV
-df_novo = pd.read_csv('teste.csv')
+# # Abrir o novo CSV
+# df_novo = pd.read_csv('teste.csv')
 
-# Manter apenas as colunas importantes
-colunas_importantes = [
-    'capital_social',
-    'idade_cnpj',
-    'serasa_contagem_negativacoes',
-    'serasa_contagem_protestos',
-    'serasa_idade_divida_mais_recente',
-    'serasa_socio_tem_negativacao',
-    'fonte_cliente'
-]
-df_novo = df_novo[colunas_importantes]
+# # Manter apenas as colunas importantes
+# colunas_importantes = [
+#     'capital_social',
+#     'idade_cnpj',
+#     'serasa_contagem_negativacoes',
+#     'serasa_contagem_protestos',
+#     'serasa_idade_divida_mais_recente',
+#     'serasa_socio_tem_negativacao',
+#     'fonte_cliente'
+# ]
+# df_novo = df_novo[colunas_importantes]
 
-# Aplicar One-Hot Encoding na coluna 'fonte_cliente'
-df_novo = pd.get_dummies(df_novo, columns=['fonte_cliente'], prefix='fonte_cliente')
+# # Aplicar One-Hot Encoding na coluna 'fonte_cliente'
+# df_novo = pd.get_dummies(df_novo, columns=['fonte_cliente'], prefix='fonte_cliente')
 
-# Forçar consistência nos nomes das colunas
-df_novo.columns = [col.replace('fonte_cliente_fonte', 'fonte_cliente_Fonte') for col in df_novo.columns]
+# # Forçar consistência nos nomes das colunas
+# df_novo.columns = [col.replace('fonte_cliente_fonte', 'fonte_cliente_Fonte') for col in df_novo.columns]
 
-# Tratar valores ausentes
-df_novo['serasa_idade_divida_mais_recente'] = df_novo['serasa_idade_divida_mais_recente'].fillna(0)  # Sem dívidas
+# # Tratar valores ausentes
+# df_novo['serasa_idade_divida_mais_recente'] = df_novo['serasa_idade_divida_mais_recente'].fillna(0)  # Sem dívidas
 
-# Aplicar a função para as colunas que possuem intervalos
-df_novo['capital_social'] = df_novo['capital_social'].apply(intervalo_para_media)
-df_novo['idade_cnpj'] = df_novo['idade_cnpj'].apply(intervalo_para_media)
+# # Aplicar a função para as colunas que possuem intervalos
+# df_novo['capital_social'] = df_novo['capital_social'].apply(intervalo_para_media)
+# df_novo['idade_cnpj'] = df_novo['idade_cnpj'].apply(intervalo_para_media)
 
-# Ajustar e transformar os dados de df_novo
-df_novo_scaled = scaler.transform(df_novo)
+# # Ajustar e transformar os dados de df_novo
+# df_novo_scaled = scaler.transform(df_novo)
 
-# Realizar a previsão com as características corretas
-new_predictions = model.predict(df_novo_scaled)
+# # Realizar a previsão com as características corretas
+# new_predictions = model.predict(df_novo_scaled)
 
-# Exibir as previsões
-print(new_predictions)
+# # Exibir as previsões
+# print(new_predictions)
 
-df_novo = pd.read_csv('teste.csv')
-capital_social_lista = df_novo['inadimplente'].tolist()
-capital_social_string = ' '.join(map(str, capital_social_lista))
-print(capital_social_string)
+# df_novo = pd.read_csv('teste.csv')
+# capital_social_lista = df_novo['inadimplente'].tolist()
+# capital_social_string = ' '.join(map(str, capital_social_lista))
+# print(capital_social_string)
 
 
 
